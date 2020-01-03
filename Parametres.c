@@ -1,19 +1,43 @@
 #include <stdio.h>
 #include <time.h>
-#include "max.c"
+#include <stdlib.h>
+#include "jeu.h"
+#define VMIN 5
+#define VMAX 30
+#define MAX(nlig,ncol) ((nlig)>(ncol)? (nlig):(ncol))
 
 int main ()
 {
     int nlig, ncol, niveau, next, nban;
-    srand((unsigned int)time(NULL));
-    printf("saisir le nombre de lignes");
+    printf("Parametres du jeu: \n");
+    printf("nombre de lignes : \n");
     scanf("%d", &nlig);
-    printf("saisir le nombre de colonnes");
+    printf("nombre de colonnes : \n");
     scanf("%d", &ncol);
-    printf("saisir le niveau de difficulté");
+    printf("nombre de cases bannies generees : \n", nban);  
+    /* probleme affichage nban  */
+    printf("niveau de 1 a 4 \n");
     scanf("%d", &niveau);
-    printf("saisir qui commence la partie: 1=ordinateur, 2=joueur");
+    printf("qui commence la partie? \n ordinateur (1) ou le joueur (2) : \n");
     scanf("%d", &next);
-    if(rand()<Max(nlig,ncol))   nban=srand();
+    printf("\n C'est parti !");
+    return 0;
 }
 
+int Parametres(int nlig, int ncol)
+{
+    int nban;
+    srand(time(NULL));
+    if ((nlig<(VMIN)) && ((nlig)>(VMAX)))
+    {
+        printf("nombre de lignes saisies incorrect");
+    }
+    else if ((ncol<VMIN) && ((ncol)>(VMAX)))
+    {
+        printf("nombre de colonnes saisies incorrect");
+    }
+    if ((rand())<(MAX(nlig,ncol)))
+    {
+        nban=rand();
+    }
+}
