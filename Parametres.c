@@ -2,8 +2,6 @@
 #include <time.h>
 #include <stdlib.h>
 #include "jeu.h"
-#define VMIN 5
-#define VMAX 30
 #define MAX(nlig,ncol) ((nlig)>(ncol)? (nlig):(ncol))
 
 int main ()
@@ -28,15 +26,15 @@ int Parametres(int nlig, int ncol)
 {
     int nban;
     srand(time(NULL));
-    if ((nlig<(VMIN)) && ((nlig)>(VMAX)))
+    if (((nlig)<(VMIN)) && ((nlig)>(VMAX)))
     {
         printf("nombre de lignes saisies incorrect");
     }
-    else if ((ncol<VMIN) && ((ncol)>(VMAX)))
+    else if ((ncol<(VMIN)) && ((ncol)>(VMAX)))
     {
         printf("nombre de colonnes saisies incorrect");
     }
-    if ((rand())<(MAX(nlig,ncol)))
+    else if (((rand())<(MAX(nlig,ncol))))
     {
         nban=rand();
     }

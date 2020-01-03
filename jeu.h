@@ -1,5 +1,7 @@
 #ifndef JEU
 #define JEU
+#define VMIN 5
+#define VMAX 30
 
 struct T_case
 {
