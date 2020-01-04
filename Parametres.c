@@ -22,7 +22,7 @@ int main ()
     return 0;
 }
 
-int Parametres(int nlig, int ncol)
+int Parametres(int nlig, int ncol) /* ne s'execute pas*/
 {
     int nban;
     srand(time(NULL));

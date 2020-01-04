@@ -1,0 +1,26 @@
+Maxime:
+Coup_Ordi_Gagnant:
+une fonction qui gère le coup gagnant effectué par l’ordinateur
+(jouer une position gagnante si possible, sinon jouer un coup au
+hasard).
+conditions pour coup gagnant: si coup_gagnant impossible, 
+jouer coup au hasard
+toujours pouvoir se déplacer dans unce case dont nimber=0
+
+Hasard: une fonction qui retourne un nombre au hasard compris
+entre deux valeurs données.
+
+Chang:
+Calcul_Nimbers: une fonction qui remplit la table nim avant
+le début de la partie.
+Coup_joueur: une fonction qui gère le coup d’un joueur 
+(choix du coup à jouer parmi la liste des coups possibles).
+
+Arnaud:
+Coup_Ordi_Hasard: une fonction qui gère le coup au hasard réalisé
+par l’ordinateur (choisir au hasard une voisine de la case
+contenant le pion).
+Voisines: une fonction qui construit la table des cases voisines
+d’une case donnée. Cette fonction calcule le nombre de
+voisines noté nb_vois et stocke leurs coordonnées
+dans une table voisine de type T_Tab_Case.
