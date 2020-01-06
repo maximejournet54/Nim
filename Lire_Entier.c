@@ -30,7 +30,9 @@ int Saisir_Entier(int bi, int bs)
 void Lire_Entier(int bi, int bs, int *n)
 
 {
-    do scanf("%d", n);
-    while (((*n)<bi) || ((*n)>bs)));
+    do
+    {
+         scanf("%d", &n);
+    } while (((*n)<bi) || ((*n)>bs)));
 }
 /* erreur de compilation */

@@ -4,9 +4,9 @@
 
 int main()
 {
-    int nbh; /* valeurs données et nombre généré au hasard*/
+    int nbh; /* nombre généré au hasard*/
     srand(time(NULL)); 
-    nbh=rand()%VMAX+VMIN; /* entre VMIN et VMAX*/
+    nbh=rand()%(VMAX-VMIN) +VMIN; /* génère nombre pseudo-aléatoire compris entre VMIN et VMAX (5 et 30)*/
     /* à enlever*/ printf("nbh=: %d", nbh); /* à enlever*/
     return 0;
 }
