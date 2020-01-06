@@ -16,7 +16,7 @@ int T_Tab_Case[900]; /* taille= 30*30, contiendra toutes les cases voisines*/
 int pion(T_Case);
 int Saisir_Entier(int, int); /* erreur compilation */
 void Lire_Entier(int, int, int*);
-int Affiche_Grille(int, int); /* à completer*/
+int Affiche_Grille(int, int); 
 int ban[30];  /* taille= max nban , contient toutes les cases bannies*/
 int Coup_Ordi_Hasard();
 int Coup_Ordi_Gagnant(int, int);

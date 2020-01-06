@@ -18,6 +18,7 @@ int i, j;
                 printf("-");
             }    
         }
+        printf("|");
         printf("\n");
     }
 }
