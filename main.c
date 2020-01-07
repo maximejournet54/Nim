@@ -3,6 +3,7 @@
 
 int main ()
 {
+    /* fonction Lire_Entier + Saisir_Entier */
     int N, K, i;
     printf("saisir un entier >0: ");
     N=saisir_entier(1);
@@ -13,26 +14,7 @@ int main ()
         printf("%d", i);
     }
     Lire_Entier(1,N,&K);
+    /* fonction Lire_Entier + Saisir_Entier */
     return 0;
+
 }
-
-int Saisir_Entier(int bi, int bs)
-
-{
-    int n;
-    do
-    {
-        scanf("%d", &n);
-    } while ((n<bi) || (n>bs));
-    return n;
-}
-
-void Lire_Entier(int bi, int bs, int *n)
-
-{
-    do
-    {
-         scanf("%d", &n);
-    } while (((*n)<bi) || ((*n)>bs)));
-}
-/* erreur de compilation */
