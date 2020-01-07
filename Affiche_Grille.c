@@ -3,7 +3,7 @@
 
 int main()
 {
-    return 0;
+    return 0; //prout
 }
 
 int Affiche_Grille(int nlig, int ncol)
