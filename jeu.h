@@ -21,5 +21,6 @@ int ban[30];  /* taille= max nban , contient toutes les cases bannies*/
 int Coup_Ordi_Hasard();
 int Coup_Ordi_Gagnant(int, int);
 int Hasard_Ban(int, int, int);
+int Hasard(int);
 
 #endif
