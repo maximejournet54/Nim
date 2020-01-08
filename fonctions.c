@@ -2,59 +2,46 @@
 #include <stdlib.h>
 #include <time.h>
 #include "jeu.h"
-#define MAX(nlig,ncol) ((nlig)>(ncol)? (nlig):(ncol)) /* fonction maximum entre nlig et ncol*/
+#define MAX(nlig,ncol) ((nlig)>(ncol)? (nlig):(ncol)) /* donne le maximum entre nlig et ncol*/
 
 
 
-int Affiche_Grille(int nlig, int ncol)
+int Affiche_Grille(int nlig, int ncol) /* affiche la grille de jeu à chaque tour*/
 {
 int i, j;
     for (i=0; i<=nlig-1; i++) 
     {
-        for (j=0; j<=ncol-1; j++)  /* problème: le dernier caractère du tableau est "-" et pas "|" */ 
+        for (j=0; j<=ncol-1; j++)  
         {  
             {   
                 printf("|"); /* code ASCII pour cases */
                 printf("-");
             }    
         }
-        printf("|");
-        printf("\n");
+        printf("| \n");
     }
 }
 
-int Hasard_Ban(int i, int j, int nbanh)
+int Hasard_Ban(int i, int j, int nbanh) /* génère pseudo-aléatoirement les cases bannies, compris entre 1 et nban*/
 {
-    int nban, nlig, ncol;
+    int nban;
     srand(time(NULL));
-    nbanh= rand()%nban+1;
+    nbanh= rand()%(nban-1) +1;
     nbanh=ban[30];
-    if (((i=1)&&(j=1)) || ((i=nlig)&&(j=ncol)))
-    {
-        return 0; /* case de départ et puit ne peuvent pas être bannis*/ 
-    }
-    if (/* condition */) /* case non bannie doit être accessible depuis la case de départ*/
-    {
-        /* code */  
-    }
-    if (/* condition */) /* pion ne doit pas être bloqué dans une case autre que le puit*/ 
-    {
-        /* */
-    }
 }
+    
+  
 
-int Hasard(int nbh)
+int Hasard(int nbh) /* génère un nombre pseudo-aléatoire  pour la fonction Coup_Ordi_Hasard*/ 
 {
     srand(time(NULL)); 
     nbh=rand()%(VMAX-VMIN) +VMIN; /* génère nombre pseudo-aléatoire compris entre VMIN et VMAX (5 et 30)*/
-    /* à enlever*/ printf("nbh=: %d", nbh); /* à enlever*/
-    return 0;
 }
-/* cette fonction sert à générer un nombre pour la fonction Coup_Ordi_Hasard*/ 
 
-int Parametres(int nlig, int ncol) /* ne s'execute pas si main mis dans la fonction*/
+
+int Parametres(int nlig, int ncol) /* demande et saisit les paramètres de jeu */
 {
-    int niveau, next, nban;
+    int niveau, nban, next;
     printf("Parametres du jeu: \n");
     printf("nombre de lignes : \n");
     scanf("%d", &nlig);
@@ -69,9 +56,9 @@ int Parametres(int nlig, int ncol) /* ne s'execute pas si main mis dans la fonct
         printf("nombre de colonnes saisies incorrect \n");
     }
     srand(time(NULL));
-    if (((rand()%VMAX+0)<(MAX(nlig,ncol))))
+    if (((rand()%VMAX+0)<(MAX(nlig,ncol)))) /* génère pseudo-aléatoirement le nombre de cases bannies */
     {
-        nban=rand()%VMAX+0; /* entre 0 et VMAX*/
+        nban=rand()%(VMAX-0) +0; /* entre 0 et VMAX*/
     }
     printf("nombre de cases bannies generees : %d \n", nban);  
     printf("niveau de 1 a 4: ");
@@ -80,11 +67,9 @@ int Parametres(int nlig, int ncol) /* ne s'execute pas si main mis dans la fonct
     printf("ordinateur (1) ou le joueur (2) : ");
     scanf("%d", &next);
     printf("\nC'est parti ! \n");
-    Affiche_Grille(nlig, ncol);
 }
 
-int Saisir_Entier(int VMIN, int VMAX)
-
+int Saisir_Entier()
 {
     int n;
     do
@@ -94,16 +79,15 @@ int Saisir_Entier(int VMIN, int VMAX)
     return n;
 }
 
-void Lire_Entier(int VMIN, int VMAX, int *n)
-
+void Lire_Entier(int *n) /* lit un entier compris entre VMIN et VMAX (5 et 30)*/
 {
     do
     {
          scanf("%d", &n);
-    } while (((*n)<VMIN) || ((*n)>VMAX)));
+    } while (((*n)<VMIN) || ((*n)>VMAX));
 }
 
-int Coup_Ordi_Gagnant(int i, int j)
+int Coup_Ordi_Gagnant(int i, int j) /* génère le coup gagnant de l'ordi */
 {
     int nlig, ncol;
     do
@@ -129,4 +113,37 @@ int Coup_Ordi_Gagnant(int i, int j)
         Coup_Ordi_Hasard();
     }
     } while ((i!=nlig) && (j!=ncol));
+}
+
+int Coup_Joueur() /* texte affiché à chaque tour du joueur */ 
+{
+    int pos, nb_destination; 
+    printf(" \n A toi de jouer ! \n");
+    /*  mettre des if selon la destination possible*/
+    if (nb_destination >1)
+    {
+        printf("choisir la destination 1 : %d  2: %d  3: %d  4: %d \n", pos, pos, pos, pos);
+    }
+    else
+    {
+        printf("seule possibilité : %d", pos);
+    }
+    
+    
+}
+
+int Coup_Ordi() /* texte affiché à chaque tour de l'ordi */ 
+{
+    int pos; /* à remplacer par les coordonnées de la case */
+    printf("l'ordinateur déplace le pion en %d", pos);
+}
+
+int Coup_Ordi_Hasard() /* génère pseudo-aléatoirement le coup de l'ordi si le coup n'est pas gagnant */ 
+{
+
+}
+
+int Calcul_Nimbers() /* remplit la grille au début de partie par des 0 et des 1 */
+{
+
 }
