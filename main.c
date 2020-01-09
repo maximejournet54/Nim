@@ -20,20 +20,20 @@ int main ()
     */
 
     /* début du jeu */
-    int nlig, ncol, i, j, next;
-    Parametres(nlig, ncol);
-    Calcul_Nimbers();
-    Affiche_Grille(nlig, ncol); /* grille ne s'affiche pas*/ 
-    if (next==1)
+    int nlig, ncol, i, j, next, null=0, verif=1;
+    Parametres(nlig, ncol, verif);
+    while (verif==1) /* s'éxécute si les paramètres sont corrects */
     {
-        Coup_Ordi_Gagnant(i, j);
+        Calcul_Nimbers(nlig, ncol, null);
+    if (next==1) /* si l'ordinateur commence la partie, l'ordinateur joue*/
+    {
+        Coup_Ordi_Gagnant(i, j, null);
         Coup_Ordi();
     }
-    else
+    if(next==2) /* si le joueur commence la partie, le joueur joue */
     {
-        Coup_Joueur();
+        Coup_Joueur(nlig, ncol);
     }
-   
-    /* fin du jeu */ 
-    return 0; 
+    return 0;     /* fin du jeu */ 
+    }
 }

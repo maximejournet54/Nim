@@ -22,12 +22,12 @@ int i, j;
     }
 }
 
-int Hasard_Ban(int i, int j, int nbanh) /* génère pseudo-aléatoirement les cases bannies, compris entre 1 et nban*/
+int Hasard_Ban(int ban[], int nbanh) /* génère pseudo-aléatoirement les cases bannies, compris entre 1 et nban*/
 {
     int nban;
     srand(time(NULL));
     nbanh= rand()%(nban-1) +1;
-    nbanh=ban[30];
+    nbanh=ban[nbanh];
 }
     
   
@@ -39,22 +39,27 @@ int Hasard(int nbh) /* génère un nombre pseudo-aléatoire  pour la fonction Co
 }
 
 
-int Parametres(int nlig, int ncol) /* demande et saisit les paramètres de jeu */
+int Parametres(int nlig, int ncol, int verif) /* demande et saisit les paramètres de jeu */
 {
-    int niveau, nban, next;
+    int nban, niveau, next;
     printf("Parametres du jeu: \n");
     printf("nombre de lignes : \n");
     scanf("%d", &nlig);
-    printf("nombre de colonnes : \n");
-    scanf("%d", &ncol);
     if (((nlig)<(VMIN)) || ((nlig)>(VMAX)))
     {
         printf("nombre de lignes saisies incorrect \n");
+        verif=0;
+        return 0;
     }
-    else if ((ncol<(VMIN)) || ((ncol)>(VMAX)))
+    printf("nombre de colonnes : \n");
+    scanf("%d", &ncol);
+    if ((ncol<(VMIN)) || ((ncol)>(VMAX)))
     {
         printf("nombre de colonnes saisies incorrect \n");
+        verif=0;
+        return 0;
     }
+    verif=1;
     srand(time(NULL));
     if (((rand()%VMAX+0)<(MAX(nlig,ncol)))) /* génère pseudo-aléatoirement le nombre de cases bannies */
     {
@@ -63,10 +68,10 @@ int Parametres(int nlig, int ncol) /* demande et saisit les paramètres de jeu *
     printf("nombre de cases bannies generees : %d \n", nban);  
     printf("niveau de 1 a 4: ");
     scanf("%d", &niveau);
-    printf("qui commence la partie? \n");
-    printf("ordinateur (1) ou le joueur (2) : ");
+    printf("qui commence la partie? \nordinateur (1) ou le joueur (2) : ");
     scanf("%d", &next);
     printf("\nC'est parti ! \n");
+    Affiche_Grille(nlig, ncol);
 }
 
 int Saisir_Entier()
@@ -87,16 +92,16 @@ void Lire_Entier(int *n) /* lit un entier compris entre VMIN et VMAX (5 et 30)*/
     } while (((*n)<VMIN) || ((*n)>VMAX));
 }
 
-int Coup_Ordi_Gagnant(int i, int j) /* génère le coup gagnant de l'ordi */
+int Coup_Ordi_Gagnant(int i, int j, int null) /* génère le coup gagnant de l'ordi */
 {
     int nlig, ncol;
     do
     {
-        if ((i+1) == 0) /* 0 si nimber=0, utiliser booleen pour nimber*/ 
+        if ((i+1) == null) /* 0 si nimber=0, utiliser booleen pour nimber*/ 
     {
         i=i+1;
     }
-    else if ((i+2) == 0)
+    else if ((i+2) == null)
     {
             i=i+2;
     }
@@ -104,7 +109,7 @@ int Coup_Ordi_Gagnant(int i, int j) /* génère le coup gagnant de l'ordi */
     {
         j=j+1;
     }
-    else if ((j+2) == 0)
+    else if ((j+2) == null)
     {
         j=j+2;
     }
@@ -113,23 +118,23 @@ int Coup_Ordi_Gagnant(int i, int j) /* génère le coup gagnant de l'ordi */
         Coup_Ordi_Hasard();
     }
     } while ((i!=nlig) && (j!=ncol));
+    Affiche_Grille(nlig, ncol);
 }
 
-int Coup_Joueur() /* texte affiché à chaque tour du joueur */ 
+int Coup_Joueur(int nlig, int ncol) /* texte affiché à chaque tour du joueur */ 
 {
-    int pos, nb_destination; 
-    printf(" \n A toi de jouer ! \n");
+    int nb_vois; 
+    printf("\nA toi de jouer ! \n");
     /*  mettre des if selon la destination possible*/
-    if (nb_destination >1)
+    if (nb_vois >1)
     {
-        printf("choisir la destination 1 : %d  2: %d  3: %d  4: %d \n", pos, pos, pos, pos);
+        printf("choisir la destination 1 :   2:   3:   4:  \n");
     }
     else
     {
-        printf("seule possibilité : %d", pos);
+        printf("seule possibilite : ");
     }
-    
-    
+    Affiche_Grille(nlig, ncol);
 }
 
 int Coup_Ordi() /* texte affiché à chaque tour de l'ordi */ 
@@ -143,7 +148,7 @@ int Coup_Ordi_Hasard() /* génère pseudo-aléatoirement le coup de l'ordi si le
 
 }
 
-int Calcul_Nimbers() /* remplit la grille au début de partie par des 0 et des 1 */
+int Calcul_Nimbers(int nlig, int ncol, int null) /* remplit la grille au début de partie par des 0 et des 1 */
 {
-
+    nim[nlig][ncol]=null; /* nimber du puit=0, null=booleen, si vrai, null=0, sinon null=1 */
 }
