@@ -4,36 +4,72 @@
 #include "jeu.h"
 #include "fonctions.c"
 
+
+/* problèmes à résoudre: nb cases bannies générées=-1, normalement impossible*/
 int main ()
 {
-    /* fonction Lire_Entier + Saisir_Entier 
-    int N, K, i, nlig, ncol;
-    printf("saisir un entier >0: ");
-    N=saisir_entier(1);
-    printf("saisir un entier compris entre 1 et %d", N);
-    K=Saisir_Entier(1,N);
-    for (i=K; i<=N; i=i+K)
-    {
-        printf("%d", i);
-    }
-    Lire_Entier(1);
-    */
-
     /* début du jeu */
-    int nlig, ncol, i, j, next, null=0, verif=1;
-    Parametres(nlig, ncol, verif);
+    int nlig, ncol, nban, niveau, i, j, next, null=0, verif=1, grille, p;
+    pion.ilig=1;
+	pion.icol=1;
+    srand((unsigned int)time(NULL));
+    Parametres(&nlig, &ncol, &nban, &niveau, &next, verif); 
     while (verif==1) /* s'éxécute si les paramètres sont corrects */
     {
-        Calcul_Nimbers(nlig, ncol, null);
-    if (next==1) /* si l'ordinateur commence la partie, l'ordinateur joue*/
-    {
-        Coup_Ordi_Gagnant(i, j, null);
-        Coup_Ordi();
-    }
-    if(next==2) /* si le joueur commence la partie, le joueur joue */
-    {
-        Coup_Joueur(nlig, ncol);
-    }
-    return 0;     /* fin du jeu */ 
+        ban=Hasard_Ban(nban,&nlig,&ncol);
+        printf("%d %d %d %d %d",nlig,ncol,niveau,next,nban);
+	    for(i=0;i<nban;i++)
+        {
+		printf("\n %d : ligne", ban.tab[i].ilig);
+		printf("\n %d : colonne", ban.tab[i].icol);		
+	    }
+	    printf("\n position pion : (%d,%d)\n",pion.ilig,pion.icol);
+        grille=Affiche_Grille(pion,ban,nlig,ncol,nban);
+        Calcul_Nimbers(nim,nlig,ncol,nban,ban);
+    while(1)
+	{
+		if(next%2==0)
+		{
+			pion=Coup_Joueur(pion,nban,ban,nlig,ncol);
+		}
+		else
+		{
+			if(niveau==1)
+			{
+				pion=Coup_Ordi_Hasard(pion,nban,ban,nlig,ncol);
+			}
+			else if(niveau==2)
+			{
+				p=rand()%3;
+				if(p==0)
+					pion=Coup_Ordi_Gagnant(pion,nban,ban,nlig,ncol,nim);
+				else
+					pion=Coup_Ordi_Hasard(pion,nban,ban,nlig,ncol);
+			}
+			else if(niveau=3)
+			{
+				p=rand()%3;
+				if(p==0)
+					pion=Coup_Ordi_Hasard(pion,nban,ban,nlig,ncol);
+				else
+					pion=Coup_Ordi_Gagnant(pion,nban,ban,nlig,ncol,nim);
+			}
+			else
+				pion=Coup_Ordi_Gagnant(pion,nban,ban,nlig,ncol,nim);
+		}
+		grille=Affiche_Grille(pion,ban,nlig,ncol,nban);
+		if(pion.ilig==nlig && pion.icol==ncol)
+		{
+			if(next%2==0)
+            {
+				printf("C'est gagné !");
+            }
+			else
+				printf("C'est perdu !");
+            return 0; 
+		}
+		next++;
+		}    
+    /* fin du jeu */ 
     }
 }
