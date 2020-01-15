@@ -124,7 +124,7 @@ int Parametres(int *nlig, int *ncol, int *nban, int *niveau, int *next, int veri
 }
 
 
-int Lire_Entier(int bi, int bs) // lit un entier compris entre 5 et 30 */
+int Lire_Entier(int bi, int bs) /* lit un entier compris entre 5 et 30 */
 {
     int n;
     do
